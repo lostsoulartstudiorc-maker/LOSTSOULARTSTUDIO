@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Catalog - LOSTSOULARTSTUDIO</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">LOSTSOULARTSTUDIO</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="catalog.html" class="active">Catalog</a></li>
+                <li><a href="livestream.html">Live Broadcast</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>Print Catalog</h1>
+            <p>Browse and order prints of our most popular designs</p>
+        </div>
+    </header>
+
+    <section class="catalog">
+        <div class="container">
+            <div class="filter-options">
+                <div class="filter-group">
+                    <label for="size-filter">Size:</label>
+                    <select id="size-filter">
+                        <option value="all">All Sizes</option>
+                        <option value="8x10">8x10</option>
+                        <option value="11x14">11x14</option>
+                        <option value="16x20">16x20</option>
+                        <option value="custom">Custom Size</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="price-filter">Price Range:</label>
+                    <select id="price-filter">
+                        <option value="all">All Prices</option>
+                        <option value="0-25">$0 - $25</option>
+                        <option value="25-50">$25 - $50</option>
+                        <option value="50-100">$50 - $100</option>
+                        <option value="100+">$100+</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="type-filter">Type:</label>
+                    <select id="type-filter">
+                        <option value="all">All Types</option>
+                        <option value="digital">Digital Art</option>
+                        <option value="traditional">Traditional Art</option>
+                        <option value="limited">Limited Edition</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="catalog-grid">
+                <div class="catalog-item">
+                    <div class="item-image">
+                        <img src="https://via.placeholder.com/300x400?text=Print+1" alt="Art Print">
+                        <div class="item-overlay">
+                            <button class="btn btn-small">View Details</button>
+                        </div>
+                    </div>
+                    <div class="item-info">
+                        <h3>Celestial Dreams</h3>
+                        <p class="artist">Original Artwork</p>
+                        <p class="description">Beautiful cosmic-inspired design with stars and moons</p>
+                        <div class="item-meta">
+                            <span class="size">8x10 - 16x20</span>
+                            <span class="price">$25 - $45</span>
+                        </div>
+                        <button class="btn btn-primary btn-add-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="catalog-item">
+                    <div class="item-image">
+                        <img src="https://via.placeholder.com/300x400?text=Print+2" alt="Art Print">
+                        <div class="item-overlay">
+                            <button class="btn btn-small">View Details</button>
+                        </div>
+                    </div>
+                    <div class="item-info">
+                        <h3>Urban Canvas</h3>
+                        <p class="artist">Street Art Series</p>
+                        <p class="description">Contemporary street art inspired design with vibrant colors</p>
+                        <div class="item-meta">
+                            <span class="size">11x14 - 16x20</span>
+                            <span class="price">$30 - $50</span>
+                        </div>
+                        <button class="btn btn-primary btn-add-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="catalog-item">
+                    <div class="item-image">
+                        <img src="https://via.placeholder.com/300x400?text=Print+3" alt="Art Print">
+                        <div class="item-overlay">
+                            <button class="btn btn-small">View Details</button>
+                        </div>
+                    </div>
+                    <div class="item-info">
+                        <h3>Nature's Harmony</h3>
+                        <p class="artist">Botanical Collection</p>
+                        <p class="description">Watercolor botanical design - Limited edition print</p>
+                        <div class="item-meta">
+                            <span class="size">8x10 only</span>
+                            <span class="price">$35</span>
+                        </div>
+                        <button class="btn btn-primary btn-add-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="catalog-item">
+                    <div class="item-image">
+                        <img src="https://via.placeholder.com/300x400?text=Print+4" alt="Art Print">
+                        <div class="item-overlay">
+                            <button class="btn btn-small">View Details</button>
+                        </div>
+                    </div>
+                    <div class="item-info">
+                        <h3>Abstract Thoughts</h3>
+                        <p class="artist">Modern Art Series</p>
+                        <p class="description">Bold abstract composition exploring color and form</p>
+                        <div class="item-meta">
+                            <span class="size">11x14 - 20x24</span>
+                            <span class="price">$40 - $65</span>
+                        </div>
+                        <button class="btn btn-primary btn-add-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="catalog-item">
+                    <div class="item-image">
+                        <img src="https://via.placeholder.com/300x400?text=Print+5" alt="Art Print">
+                        <div class="item-overlay">
+                            <button class="btn btn-small">View Details</button>
+                        </div>
+                    </div>
+                    <div class="item-info">
+                        <h3>Ethereal Beings</h3>
+                        <p class="artist">Fantasy Illustration</p>
+                        <p class="description">Mystical character illustration with intricate details</p>
+                        <div class="item-meta">
+                            <span class="size">16x20 - 24x36</span>
+                            <span class="price">$50 - $85</span>
+                        </div>
+                        <button class="btn btn-primary btn-add-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="catalog-item">
+                    <div class="item-image">
+                        <img src="https://via.placeholder.com/300x400?text=Print+6" alt="Art Print">
+                        <div class="item-overlay">
+                            <button class="btn btn-small">View Details</button>
+                        </div>
+                    </div>
+                    <div class="item-info">
+                        <h3>Monochrome Elegance</h3>
+                        <p class="artist">Black & White Series</p>
+                        <p class="description">Minimalist black and white design perfect for any space</p>
+                        <div class="item-meta">
+                            <span class="size">8x10 - 16x20</span>
+                            <span class="price">$20 - $40</span>
+                        </div>
+                        <button class="btn btn-primary btn-add-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="catalog-info">
+        <div class="container">
+            <h2>About Our Prints</h2>
+            <p>All prints are produced on premium paper stock with fade-resistant inks. We offer various sizes and framing options. Custom sizes and materials available upon request.</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 LOSTSOULARTSTUDIO. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" class="social-link">Instagram</a>
+                <a href="#" class="social-link">Twitter</a>
+                <a href="#" class="social-link">Facebook</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
