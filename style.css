@@ -5,22 +5,42 @@
     box-sizing: border-box;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Fredoka+One&display=swap');
+
 :root {
-    --primary-color: #1a1a1a;
-    --secondary-color: #d4af37;
-    --accent-color: #8b0000;
-    --light-bg: #f5f5f5;
-    --text-dark: #222;
-    --text-light: #666;
-    --border-color: #ddd;
+    --primary-color: #0a0e27;
+    --secondary-color: #ff006e;
+    --accent-color: #00f5ff;
+    --neon-purple: #b537f2;
+    --neon-yellow: #ffff00;
+    --neon-green: #39ff14;
+    --light-bg: #1a1f3a;
+    --text-dark: #ffffff;
+    --text-light: #cccccc;
+    --border-color: #ff006e;
     --transition: all 0.3s ease;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Fredoka One', cursive;
     line-height: 1.6;
     color: var(--text-dark);
-    background-color: #fff;
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0a0e27 100%);
+    background-attachment: fixed;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 50%, rgba(255, 0, 110, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 245, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
 }
 
 .container {
@@ -31,12 +51,13 @@ body {
 
 /* Navigation */
 .navbar {
-    background-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(10, 14, 39, 0.95) 0%, rgba(26, 31, 58, 0.95) 100%);
     padding: 1rem 0;
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 30px rgba(255, 0, 110, 0.4), 0 0 60px rgba(0, 245, 255, 0.2);
+    border-bottom: 2px solid var(--secondary-color);
 }
 
 .navbar .container {
@@ -47,9 +68,21 @@ body {
 
 .logo {
     color: var(--secondary-color);
-    font-size: 1.5rem;
+    font-family: 'Rubik Mono One', monospace;
+    font-size: 1.8rem;
     font-weight: bold;
-    letter-spacing: 2px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px var(--secondary-color),
+                 0 0 20px rgba(255, 0, 110, 0.5),
+                 0 0 30px var(--accent-color),
+                 0 0 40px rgba(0, 245, 255, 0.3);
+    animation: neonFlicker 3s infinite;
+}
+
+@keyframes neonFlicker {
+    0%, 100% { text-shadow: 0 0 10px var(--secondary-color), 0 0 20px rgba(255, 0, 110, 0.5), 0 0 30px var(--accent-color); }
+    50% { text-shadow: 0 0 20px var(--secondary-color), 0 0 40px rgba(255, 0, 110, 0.8), 0 0 60px var(--accent-color), 0 0 80px rgba(0, 245, 255, 0.5); }
 }
 
 .nav-links {
@@ -59,106 +92,208 @@ body {
 }
 
 .nav-links a {
-    color: #fff;
+    color: var(--text-dark);
     text-decoration: none;
     transition: var(--transition);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    font-family: 'Fredoka One', cursive;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.nav-links a::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 0, 110, 0.6);
+}
+
+.nav-links a:hover::before,
+.nav-links a.active::before {
+    width: 100%;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
     color: var(--secondary-color);
+    text-shadow: 0 0 10px var(--secondary-color);
 }
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a2a 100%);
+    background: linear-gradient(135deg, rgba(10, 14, 39, 0.8) 0%, rgba(26, 31, 58, 0.8) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><style>.graffiti{font-family:Arial;font-weight:bold;font-size:120px;fill:rgba(255,0,110,0.05)}</style></defs><text class="graffiti" x="100" y="200">LOST</text><text class="graffiti" x="100" y="350">SOUL</text></svg>');
     color: #fff;
     padding: 120px 0;
     text-align: center;
-    min-height: 500px;
+    min-height: 600px;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(255, 0, 110, 0.1) 0%, transparent 70%);
+    animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
 }
 
 .hero-content h1 {
-    font-size: 4rem;
+    font-size: 5rem;
     margin-bottom: 1rem;
-    letter-spacing: 3px;
+    letter-spacing: 6px;
     color: var(--secondary-color);
+    font-family: 'Rubik Mono One', monospace;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px var(--secondary-color),
+                 0 0 20px rgba(255, 0, 110, 0.8),
+                 0 0 30px var(--accent-color),
+                 0 0 40px rgba(0, 245, 255, 0.6),
+                 0 0 50px rgba(181, 55, 242, 0.4);
+    animation: glitch 3s infinite;
+}
+
+@keyframes glitch {
+    0% { text-shadow: 0 0 10px var(--secondary-color), 0 0 20px rgba(255, 0, 110, 0.8); }
+    50% { text-shadow: 0 0 20px var(--secondary-color), 0 0 40px rgba(255, 0, 110, 0.8), 0 0 60px var(--accent-color); }
+    100% { text-shadow: 0 0 10px var(--secondary-color), 0 0 20px rgba(255, 0, 110, 0.8); }
 }
 
 .hero-content p {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin-bottom: 2rem;
-    color: #ddd;
+    color: var(--accent-color);
+    text-shadow: 0 0 10px var(--accent-color);
+    font-family: 'Fredoka One', cursive;
+    text-transform: uppercase;
 }
 
 /* Page Header */
 .page-header {
-    background: linear-gradient(135deg, var(--primary-color) 0%, #2a2a2a 100%);
+    background: linear-gradient(135deg, rgba(10, 14, 39, 0.9) 0%, rgba(26, 31, 58, 0.9) 100%);
     color: #fff;
     padding: 60px 0;
     text-align: center;
+    border-bottom: 3px solid var(--secondary-color);
+    box-shadow: 0 0 20px rgba(255, 0, 110, 0.3);
 }
 
 .page-header h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin-bottom: 1rem;
     color: var(--secondary-color);
-    letter-spacing: 2px;
+    font-family: 'Rubik Mono One', monospace;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px var(--secondary-color),
+                 0 0 20px rgba(255, 0, 110, 0.6),
+                 0 0 30px var(--accent-color);
 }
 
 .page-header p {
-    font-size: 1.2rem;
-    color: #ddd;
+    font-size: 1.3rem;
+    color: var(--accent-color);
+    text-shadow: 0 0 10px var(--accent-color);
 }
 
 /* Buttons */
 .btn {
     display: inline-block;
-    padding: 12px 30px;
-    border: none;
-    border-radius: 4px;
+    padding: 14px 35px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 0;
     text-decoration: none;
     font-size: 1rem;
     cursor: pointer;
     transition: var(--transition);
     text-align: center;
+    font-family: 'Rubik Mono One', monospace;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+    transition: left 0.3s ease;
+    z-index: -1;
+}
+
+.btn:hover::before {
+    left: 0;
 }
 
 .btn-primary {
     background-color: var(--secondary-color);
     color: var(--primary-color);
-    font-weight: bold;
+    box-shadow: 0 0 10px var(--secondary-color),
+                0 0 20px rgba(255, 0, 110, 0.6);
 }
 
 .btn-primary:hover {
-    background-color: #c99f2e;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 0 20px var(--secondary-color),
+                0 0 40px rgba(255, 0, 110, 0.8),
+                0 0 60px var(--accent-color);
+    transform: translateY(-3px);
 }
 
 .btn-secondary {
-    background-color: var(--accent-color);
-    color: #fff;
+    background-color: transparent;
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px var(--accent-color);
 }
 
 .btn-secondary:hover {
-    background-color: #6b0000;
-    transform: translateY(-2px);
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    box-shadow: 0 0 20px var(--accent-color),
+                0 0 40px rgba(0, 245, 255, 0.6);
 }
 
 .btn-small {
     padding: 8px 16px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 .btn-social {
     background-color: var(--secondary-color);
     color: var(--primary-color);
     margin: 0.5rem;
+    box-shadow: 0 0 15px var(--secondary-color);
+}
+
+.btn-social:hover {
+    box-shadow: 0 0 25px var(--secondary-color),
+                0 0 35px rgba(255, 0, 110, 0.6);
 }
 
 .btn-add-cart {
@@ -172,10 +307,13 @@ body {
 }
 
 .about h2 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     margin-bottom: 1.5rem;
     text-align: center;
-    color: var(--primary-color);
+    color: var(--accent-color);
+    font-family: 'Rubik Mono One', monospace;
+    text-transform: uppercase;
+    text-shadow: 0 0 20px var(--accent-color);
 }
 
 .about > .container > p {
@@ -195,42 +333,70 @@ body {
 }
 
 .feature-card {
-    background-color: var(--light-bg);
+    background: linear-gradient(135deg, rgba(26, 31, 58, 0.8) 0%, rgba(10, 14, 39, 0.8) 100%);
     padding: 2rem;
-    border-radius: 8px;
+    border-radius: 0;
     text-align: center;
     transition: var(--transition);
-    border: 2px solid transparent;
+    border: 2px solid var(--secondary-color);
+    box-shadow: 0 0 15px rgba(255, 0, 110, 0.2);
+    position: relative;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 0, 110, 0.1), rgba(0, 245, 255, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.feature-card:hover::before {
+    opacity: 1;
 }
 
 .feature-card:hover {
-    border-color: var(--secondary-color);
-    transform: translateY(-5px);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 25px var(--secondary-color),
+                0 0 35px rgba(0, 245, 255, 0.3);
+    transform: translateY(-10px);
 }
 
 .feature-card h3 {
     color: var(--secondary-color);
     margin-bottom: 1rem;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
+    position: relative;
+    z-index: 1;
+    text-transform: uppercase;
+    font-family: 'Rubik Mono One', monospace;
 }
 
 /* CTA Section */
 .cta {
-    background-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(10, 14, 39, 0.9) 0%, rgba(26, 31, 58, 0.9) 100%);
     color: #fff;
     padding: 60px 0;
     text-align: center;
+    border: 3px solid var(--secondary-color);
+    box-shadow: 0 0 30px rgba(255, 0, 110, 0.4);
 }
 
 .cta h2 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     margin-bottom: 1rem;
     color: var(--secondary-color);
+    font-family: 'Rubik Mono One', monospace;
+    text-transform: uppercase;
+    text-shadow: 0 0 20px var(--secondary-color);
 }
 
 .cta p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
+    color: var(--accent-color);
 }
 
 /* Services Section */
@@ -239,10 +405,13 @@ body {
 }
 
 .services h2 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     text-align: center;
     margin-bottom: 3rem;
-    color: var(--primary-color);
+    color: var(--secondary-color);
+    font-family: 'Rubik Mono One', monospace;
+    text-transform: uppercase;
+    text-shadow: 0 0 20px var(--secondary-color);
 }
 
 .services-grid {
@@ -252,29 +421,35 @@ body {
 }
 
 .service-card {
-    background: var(--light-bg);
+    background: linear-gradient(135deg, rgba(26, 31, 58, 0.8) 0%, rgba(10, 14, 39, 0.8) 100%);
     padding: 2rem;
-    border-radius: 8px;
+    border-radius: 0;
     text-align: center;
     transition: var(--transition);
-    border: 2px solid transparent;
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 0 15px rgba(0, 245, 255, 0.2);
 }
 
 .service-card:hover {
     border-color: var(--secondary-color);
-    transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 0 25px var(--secondary-color),
+                0 0 35px rgba(255, 0, 110, 0.4),
+                0 0 50px var(--accent-color);
+    transform: translateY(-15px);
 }
 
 .service-icon {
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin-bottom: 1rem;
+    filter: drop-shadow(0 0 10px rgba(255, 0, 110, 0.5));
 }
 
 .service-card h3 {
-    color: var(--primary-color);
+    color: var(--secondary-color);
     margin-bottom: 1rem;
     font-size: 1.4rem;
+    text-transform: uppercase;
+    font-family: 'Rubik Mono One', monospace;
 }
 
 .service-features {
@@ -282,6 +457,7 @@ body {
     list-style: none;
     margin: 1.5rem 0;
     font-size: 0.95rem;
+    color: var(--text-light);
 }
 
 .service-features li {
@@ -291,7 +467,7 @@ body {
 }
 
 .service-features li:before {
-    content: "✓";
+    content: "✦";
     position: absolute;
     left: 0;
     color: var(--secondary-color);
@@ -313,20 +489,25 @@ body {
 
 .filter-btn {
     padding: 10px 20px;
-    border: 2px solid var(--primary-color);
+    border: 2px solid var(--secondary-color);
     background: transparent;
-    color: var(--primary-color);
+    color: var(--secondary-color);
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 0;
     transition: var(--transition);
-    font-weight: 500;
+    font-weight: bold;
+    font-family: 'Rubik Mono One', monospace;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px rgba(255, 0, 110, 0.3);
 }
 
 .filter-btn:hover,
 .filter-btn.active {
     background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
+    border-color: var(--accent-color);
     color: var(--primary-color);
+    box-shadow: 0 0 20px var(--secondary-color),
+                0 0 30px rgba(255, 0, 110, 0.5);
 }
 
 .portfolio-grid {
@@ -336,20 +517,24 @@ body {
 }
 
 .portfolio-item {
-    border-radius: 8px;
+    border-radius: 0;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 2px solid var(--secondary-color);
     transition: var(--transition);
+    box-shadow: 0 0 15px rgba(255, 0, 110, 0.2);
 }
 
 .portfolio-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px var(--secondary-color),
+                0 0 35px rgba(0, 245, 255, 0.3);
+    border-color: var(--accent-color);
 }
 
 .portfolio-image {
     overflow: hidden;
     height: 300px;
+    position: relative;
 }
 
 .portfolio-image img {
@@ -360,17 +545,19 @@ body {
 }
 
 .portfolio-item:hover .portfolio-image img {
-    transform: scale(1.05);
+    transform: scale(1.1) rotate(1deg);
 }
 
 .portfolio-info {
     padding: 1.5rem;
-    background: var(--light-bg);
+    background: linear-gradient(135deg, rgba(26, 31, 58, 0.9) 0%, rgba(10, 14, 39, 0.9) 100%);
 }
 
 .portfolio-info h3 {
-    color: var(--primary-color);
+    color: var(--secondary-color);
     margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-family: 'Rubik Mono One', monospace;
 }
 
 /* Catalog Section */
@@ -394,13 +581,19 @@ body {
 
 .filter-group label {
     font-weight: 600;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    font-family: 'Rubik Mono One', monospace;
 }
 
 .filter-group select {
     padding: 8px 12px;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 0;
     font-size: 0.95rem;
+    background-color: rgba(26, 31, 58, 0.8);
+    color: var(--text-dark);
+    box-shadow: 0 0 10px rgba(255, 0, 110, 0.3);
 }
 
 .catalog-grid {
@@ -410,14 +603,17 @@ body {
 }
 
 .catalog-item {
-    border-radius: 8px;
+    border-radius: 0;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 2px solid var(--secondary-color);
     transition: var(--transition);
+    box-shadow: 0 0 15px rgba(255, 0, 110, 0.2);
 }
 
 .catalog-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px var(--secondary-color),
+                0 0 35px rgba(0, 245, 255, 0.3);
 }
 
 .item-image {
@@ -430,6 +626,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: var(--transition);
 }
 
 .item-overlay {
@@ -438,7 +635,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -452,17 +649,21 @@ body {
 
 .item-info {
     padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(26, 31, 58, 0.9) 0%, rgba(10, 14, 39, 0.9) 100%);
 }
 
 .item-info h3 {
-    color: var(--primary-color);
+    color: var(--secondary-color);
     margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-family: 'Rubik Mono One', monospace;
 }
 
 .artist {
-    color: var(--secondary-color);
+    color: var(--accent-color);
     font-weight: 600;
     font-size: 0.9rem;
+    text-shadow: 0 0 5px var(--accent-color);
 }
 
 .item-meta {
@@ -474,14 +675,17 @@ body {
 }
 
 .price {
-    color: var(--accent-color);
+    color: var(--neon-yellow);
     font-weight: bold;
+    text-shadow: 0 0 10px var(--neon-yellow);
 }
 
 /* Livestream Section */
 .livestream-hero {
     padding: 60px 0;
-    background-color: var(--light-bg);
+    background: linear-gradient(135deg, rgba(26, 31, 58, 0.8) 0%, rgba(10, 14, 39, 0.8) 100%);
+    border: 3px solid var(--accent-color);
+    box-shadow: 0 0 30px rgba(0, 245, 255, 0.3);
 }
 
 .livestream-container {
@@ -493,13 +697,15 @@ body {
 
 .video-placeholder {
     position: relative;
-    border-radius: 8px;
+    border-radius: 0;
     overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    border: 3px solid var(--secondary-color);
+    box-shadow: 0 0 25px var(--secondary-color),
+                0 0 35px rgba(0, 245, 255, 0.2);
 }
 
 .video-placeholder img {
-    width: 100%;;
+    width: 100%;
     display: block;
 }
 
@@ -507,40 +713,47 @@ body {
     position: absolute;
     top: 20px;
     right: 20px;
-    background-color: var(--accent-color);
+    background: linear-gradient(135deg, var(--secondary-color), var(--neon-purple));
     color: #fff;
-    padding: 8px 15px;
-    border-radius: 20px;
+    padding: 10px 20px;
+    border-radius: 0;
     display: flex;
     align-items: center;
     gap: 0.5rem;
     font-weight: bold;
     font-size: 0.9rem;
+    box-shadow: 0 0 20px rgba(255, 0, 110, 0.6);
+    font-family: 'Rubik Mono One', monospace;
+    text-transform: uppercase;
 }
 
 .status-dot {
-    width: 10px;
-    height: 10px;
-    background-color: #fff;
+    width: 12px;
+    height: 12px;
+    background-color: var(--neon-yellow);
     border-radius: 50%;
-    animation: pulse 1.5s infinite;
+    animation: livePulse 1s infinite;
 }
 
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
+@keyframes livePulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 5px var(--neon-yellow); }
     50% { opacity: 0.5; }
 }
 
 .livestream-info h2 {
-    color: var(--primary-color);
+    color: var(--secondary-color);
     margin-bottom: 1rem;
+    font-family: 'Rubik Mono One', monospace;
+    text-transform: uppercase;
+    font-size: 1.8rem;
 }
 
 .stream-title {
-    color: var(--secondary-color);
+    color: var(--accent-color);
     font-size: 1.3rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px var(--accent-color);
 }
 
 .viewer-count {
@@ -553,42 +766,75 @@ body {
     padding: 60px 0;
 }
 
+.schedule h2 {
+    font-size: 2.8rem;
+    margin-bottom: 2rem;
+    color: var(--secondary-color);
+    font-family: 'Rubik Mono One', monospace;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 0 0 20px var(--secondary-color);
+}
+
 .schedule-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
-    margin-top: 2rem;
 }
 
 .schedule-card {
-    background: var(--light-bg);
+    background: linear-gradient(135deg, rgba(26, 31, 58, 0.8) 0%, rgba(10, 14, 39, 0.8) 100%);
     padding: 2rem;
-    border-radius: 8px;
+    border-radius: 0;
     border-left: 4px solid var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+    box-shadow: 0 0 15px rgba(255, 0, 110, 0.2);
+    transition: var(--transition);
+}
+
+.schedule-card:hover {
+    box-shadow: 0 0 25px var(--secondary-color),
+                0 0 35px rgba(0, 245, 255, 0.2);
+    transform: translateY(-5px);
 }
 
 .schedule-card .day {
     color: var(--secondary-color);
     font-weight: bold;
     font-size: 1.2rem;
+    text-transform: uppercase;
+    font-family: 'Rubik Mono One', monospace;
 }
 
 .schedule-card .time {
     color: var(--accent-color);
     font-size: 0.95rem;
     margin: 0.5rem 0;
+    text-shadow: 0 0 5px var(--accent-color);
 }
 
 .schedule-card .title {
-    color: var(--primary-color);
+    color: var(--secondary-color);
     font-weight: 600;
     margin: 1rem 0 0.5rem 0;
+    text-transform: uppercase;
+    font-family: 'Rubik Mono One', monospace;
 }
 
 /* Streams Grid */
 .past-streams {
     padding: 60px 0;
-    background-color: var(--light-bg);
+    background: linear-gradient(135deg, rgba(26, 31, 58, 0.5) 0%, rgba(10, 14, 39, 0.5) 100%);
+}
+
+.past-streams h2 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+    font-family: 'Rubik Mono One', monospace;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 0 0 20px var(--secondary-color);
 }
 
 .streams-grid {
@@ -599,15 +845,18 @@ body {
 }
 
 .stream-card {
-    background: #fff;
-    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(26, 31, 58, 0.9) 0%, rgba(10, 14, 39, 0.9) 100%);
+    border-radius: 0;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 2px solid var(--accent-color);
     transition: var(--transition);
+    box-shadow: 0 0 15px rgba(0, 245, 255, 0.2);
 }
 
 .stream-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px var(--accent-color),
+                0 0 35px rgba(0, 245, 255, 0.3);
 }
 
 .stream-thumbnail {
@@ -626,11 +875,12 @@ body {
     position: absolute;
     bottom: 10px;
     right: 10px;
-    background: rgba(0,0,0,0.7);
-    color: #fff;
+    background: rgba(0, 0, 0, 0.9);
+    color: var(--neon-yellow);
     padding: 4px 8px;
-    border-radius: 4px;
+    border: 1px solid var(--neon-yellow);
     font-size: 0.85rem;
+    box-shadow: 0 0 10px var(--neon-yellow);
 }
 
 .stream-details {
@@ -638,8 +888,10 @@ body {
 }
 
 .stream-details h3 {
-    color: var(--primary-color);
+    color: var(--secondary-color);
     margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-family: 'Rubik Mono One', monospace;
 }
 
 .views {
@@ -672,26 +924,31 @@ body {
 .form-group label {
     font-weight: 600;
     margin-bottom: 0.5rem;
-    color: var(--primary-color);
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    font-family: 'Rubik Mono One', monospace;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
     padding: 12px;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    font-family: inherit;
+    border: 2px solid var(--secondary-color);
+    border-radius: 0;
+    font-family: 'Fredoka One', cursive;
     font-size: 1rem;
     transition: var(--transition);
+    background-color: rgba(26, 31, 58, 0.5);
+    color: var(--text-dark);
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: var(--secondary-color);
-    box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px var(--secondary-color),
+                0 0 25px rgba(0, 245, 255, 0.3);
 }
 
 .contact-info-container {
@@ -701,28 +958,37 @@ body {
 }
 
 .contact-info-container h2 {
-    color: var(--primary-color);
+    color: var(--secondary-color);
     margin-bottom: 1rem;
+    font-family: 'Rubik Mono One', monospace;
+    text-transform: uppercase;
 }
 
 .contact-info-box {
-    background-color: var(--light-bg);
+    background: linear-gradient(135deg, rgba(26, 31, 58, 0.8) 0%, rgba(10, 14, 39, 0.8) 100%);
     padding: 1.5rem;
-    border-radius: 8px;
+    border-radius: 0;
+    border: 2px solid var(--secondary-color);
+    box-shadow: 0 0 10px rgba(255, 0, 110, 0.2);
 }
 
 .contact-info-box h3 {
     color: var(--secondary-color);
     margin-bottom: 0.8rem;
+    font-family: 'Rubik Mono One', monospace;
+    text-transform: uppercase;
+    font-size: 1.1rem;
 }
 
 .contact-info-box a {
-    color: var(--secondary-color);
+    color: var(--accent-color);
     text-decoration: none;
+    text-shadow: 0 0 5px var(--accent-color);
 }
 
 .contact-info-box a:hover {
     text-decoration: underline;
+    box-shadow: 0 0 15px var(--accent-color);
 }
 
 .note {
@@ -741,23 +1007,30 @@ body {
     color: var(--secondary-color);
     text-decoration: none;
     transition: var(--transition);
+    font-family: 'Rubik Mono One', monospace;
+    text-transform: uppercase;
+    font-size: 0.9rem;
 }
 
 .social-link-item:hover {
-    text-decoration: underline;
+    color: var(--accent-color);
+    text-shadow: 0 0 10px var(--accent-color);
 }
 
 /* FAQ Section */
 .faq {
     padding: 60px 0;
-    background-color: var(--light-bg);
+    background: linear-gradient(135deg, rgba(26, 31, 58, 0.5) 0%, rgba(10, 14, 39, 0.5) 100%);
 }
 
 .faq h2 {
     text-align: center;
-    color: var(--primary-color);
+    color: var(--secondary-color);
     margin-bottom: 3rem;
-    font-size: 2.5rem;
+    font-size: 2.8rem;
+    font-family: 'Rubik Mono One', monospace;
+    text-transform: uppercase;
+    text-shadow: 0 0 20px var(--secondary-color);
 }
 
 .faq-grid {
@@ -767,24 +1040,36 @@ body {
 }
 
 .faq-item {
-    background: #fff;
+    background: linear-gradient(135deg, rgba(26, 31, 58, 0.8) 0%, rgba(10, 14, 39, 0.8) 100%);
     padding: 2rem;
-    border-radius: 8px;
+    border-radius: 0;
     border-left: 4px solid var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+    box-shadow: 0 0 15px rgba(255, 0, 110, 0.2);
+    transition: var(--transition);
+}
+
+.faq-item:hover {
+    box-shadow: 0 0 25px var(--secondary-color),
+                0 0 35px rgba(0, 245, 255, 0.2);
 }
 
 .faq-item h3 {
-    color: var(--primary-color);
+    color: var(--secondary-color);
     margin-bottom: 1rem;
+    font-family: 'Rubik Mono One', monospace;
+    text-transform: uppercase;
 }
 
 /* Footer */
 .footer {
-    background-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(10, 14, 39, 0.95) 0%, rgba(26, 31, 58, 0.95) 100%);
     color: #fff;
     padding: 2rem 0;
     text-align: center;
     margin-top: 4rem;
+    border-top: 3px solid var(--secondary-color);
+    box-shadow: 0 0 30px rgba(255, 0, 110, 0.3);
 }
 
 .social-links {
@@ -798,11 +1083,38 @@ body {
     color: var(--secondary-color);
     text-decoration: none;
     transition: var(--transition);
+    font-family: 'Rubik Mono One', monospace;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    text-shadow: 0 0 10px rgba(255, 0, 110, 0.3);
 }
 
 .social-link:hover {
-    text-decoration: underline;
-    color: #fff;
+    color: var(--accent-color);
+    text-shadow: 0 0 15px var(--accent-color);
+}
+
+/* Shopify Embed Section */
+.shopify-section {
+    padding: 60px 0;
+    border: 3px solid var(--secondary-color);
+    margin: 40px 0;
+    box-shadow: 0 0 30px rgba(255, 0, 110, 0.3);
+}
+
+.shopify-section h2 {
+    font-size: 2.8rem;
+    margin-bottom: 2rem;
+    color: var(--secondary-color);
+    font-family: 'Rubik Mono One', monospace;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 0 0 20px var(--secondary-color);
+}
+
+#shopify-store {
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.2);
 }
 
 /* Responsive Design */
@@ -810,11 +1122,11 @@ body {
     .nav-links {
         flex-direction: column;
         gap: 1rem;
-        font-size: 0.85rem;
+        font-size: 0.8rem;
     }
 
     .hero-content h1 {
-        font-size: 2.5rem;
+        font-size: 3rem;
     }
 
     .page-header h1 {
@@ -860,16 +1172,17 @@ body {
 @media (max-width: 480px) {
     .nav-links {
         gap: 0.5rem;
-        font-size: 0.75rem;
+        font-size: 0.7rem;
     }
 
     .logo {
         font-size: 1.2rem;
+        letter-spacing: 2px;
     }
 
     .hero-content h1 {
-        font-size: 1.8rem;
-        letter-spacing: 1px;
+        font-size: 2rem;
+        letter-spacing: 3px;
     }
 
     .page-header h1 {
@@ -878,45 +1191,54 @@ body {
 
     .btn {
         padding: 10px 20px;
-        font-size: 0.9rem;
+        font-size: 0.8rem;
     }
 }
 
 /* Pricing Info */
 .pricing-info {
-    background-color: var(--light-bg);
+    background: linear-gradient(135deg, rgba(26, 31, 58, 0.5) 0%, rgba(10, 14, 39, 0.5) 100%);
     padding: 60px 0;
     text-align: center;
 }
 
 .pricing-info h2 {
-    color: var(--primary-color);
+    color: var(--secondary-color);
     margin-bottom: 1rem;
     font-size: 2rem;
+    font-family: 'Rubik Mono One', monospace;
+    text-transform: uppercase;
 }
 
 .catalog-info {
     padding: 60px 0;
-    background-color: var(--light-bg);
+    background: linear-gradient(135deg, rgba(26, 31, 58, 0.5) 0%, rgba(10, 14, 39, 0.5) 100%);
     text-align: center;
 }
 
 .catalog-info h2 {
-    color: var(--primary-color);
+    color: var(--secondary-color);
     margin-bottom: 1rem;
+    font-family: 'Rubik Mono One', monospace;
+    text-transform: uppercase;
 }
 
 .subscribe-cta {
-    background-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(10, 14, 39, 0.9) 0%, rgba(26, 31, 58, 0.9) 100%);
     color: #fff;
     padding: 60px 0;
     text-align: center;
+    border: 3px solid var(--secondary-color);
+    box-shadow: 0 0 30px rgba(255, 0, 110, 0.3);
 }
 
 .subscribe-cta h2 {
     color: var(--secondary-color);
     margin-bottom: 1rem;
     font-size: 2rem;
+    font-family: 'Rubik Mono One', monospace;
+    text-transform: uppercase;
+    text-shadow: 0 0 20px var(--secondary-color);
 }
 
 .social-buttons {
